@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "playwright test"
+    "test": "playwright test && nyc report",
+    "show-coverage": "npx nyc report --reporter=html && start coverage/index.html"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -25,6 +26,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
+    "nyc": "^17.1.0",
     "playwright": "^1.50.0",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.2",

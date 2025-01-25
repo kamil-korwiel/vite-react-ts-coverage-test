@@ -1,50 +1,27 @@
-# React + TypeScript + Vite
+# Use [Istanbul](https://istanbul.js.org) coverage collection with [Playwright Test](https://playwright.dev/docs/test-intro)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This example demonstrates how to use [vite-plugin-istanbul](https://github.com/ifaxity/vite-plugin-istanbul) to collect coverage data during runtime with your end-to-end tests which will be stored on the filesystem. When applying the shown parts, you are able to view the coverage report e.g. as HTML, or convert it to the `lcov`
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- The web application which you are using needs to have [`vite-plugin-istanbul`](https://github.com/ifaxity/vite-plugin-istanbul) configured during the build process.
 
-## Expanding the ESLint configuration
+## Usage
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Place `baseFixureCoverage.ts` into your test directory. Instead of requiring `@playwright/test` to get the test object, use `baseFixureCoverage.ts`.
+- This will collect the corresponding coverage files into the `.nyc_output` directory which can be used from the [Istanbul CLI](https://github.com/istanbuljs/nyc).
+- For an example test, see [App.test.ts](/test/checkCount.spec.ts)
 
-- Configure the top-level `parserOptions` property like this:
+## Coverage formats
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Helpful commands are the following:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- `npx nyc report --reporter=html` -> Writes an HTML report to `coverage/index.html`.
+- `npx nyc report --reporter=lcov` -> commonly used to upload to Coveralls or [Codecov](https://about.codecov.io/).
+- `npx nyc report --reporter=text` -> CLI output how the current code coverage per file and statement will look like.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Used tools
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- [vite](https://vitejs.dev/) - tooling and bundling for React
+- [vite-plugin-istanbul](https://github.com/ifaxity/vite-plugin-istanbul) - to add coverage information
+- [nyc](https://github.com/istanbuljs/nyc) - Istanbul CLI to generate lcov coverage

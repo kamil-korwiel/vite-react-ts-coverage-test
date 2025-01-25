@@ -22,7 +22,7 @@ const test = baseTest.extend({
     // });
 
     await context.exposeFunction('collectIstanbulCoverage', (coverageJSON) => {
-      console.log(coverageJSON)
+      // console.log(coverageJSON)
       if (coverageJSON) {
         fs.writeFileSync(path.join(canyonOutputDirPath, `${new Date().valueOf()}.json`),JSON.stringify(coverageJSON));
       }
