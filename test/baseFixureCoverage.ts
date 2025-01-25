@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import {test as baseTest, expect} from '@playwright/test';
  
-const canyonOutputDirPath = path.join(process.cwd(), '.canyon_output');
+const canyonOutputDirPath = path.join(process.cwd(), '.nyc_output');
  
 const test = baseTest.extend({
   context: async ({context}, use) => {
@@ -24,7 +24,7 @@ const test = baseTest.extend({
     await context.exposeFunction('collectIstanbulCoverage', (coverageJSON) => {
       console.log(coverageJSON)
       if (coverageJSON) {
-        fs.writeFileSync(path.join(canyonOutputDirPath, `${new Date().valueOf()}.json`),JSON.stringify({...test.info(), coverage: coverageJSON}));
+        fs.writeFileSync(path.join(canyonOutputDirPath, `${new Date().valueOf()}.json`),JSON.stringify(coverageJSON));
       }
     });
 
