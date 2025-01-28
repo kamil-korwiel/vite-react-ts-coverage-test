@@ -32,3 +32,5 @@ dist-ssr
 # Covearge
 .nyc_output/
 coverage/
+
+backup/
