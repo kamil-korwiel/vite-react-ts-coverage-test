@@ -4,12 +4,9 @@ import viteConfig from './vite.config'
 
 export default mergeConfig(viteConfig, {
   test: {
+    // 👋 add the line below to add jsdom to vite
     environment: 'happy-dom',
-    include: ['**/*.test.ts'],
-    coverage: {
-      exclude: [
-
-      ],
-    },
-  },
+    include: ['./tests/*.test.tsx',"./tests/*.spec.tsx"],
+    global: true
+  }
 })
