@@ -107,7 +107,7 @@ export const Button: React.FC<React.PropsWithChildren<ButtonProps>> = ({
       withIcon={!!icon}
     >
       {icon && (
-        <Icon color={clear ? color.primaryText : color.buttonText} size={iconSize} name={icon} />
+        <Icon  color={clear ? color.primaryText : color.buttonText} size={iconSize} name={icon} />
       )}
       {icon && children && <Spacer />}
       {children}
