@@ -6,6 +6,7 @@
   "dependencies": {
     "@playwright/test": "^1.50.0",
     "@reduxjs/toolkit": "^2.2.3",
+    "@vitest/ui": "^3.0.4",
     "axios": "^1.6.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -28,6 +29,7 @@
     "show-coverage": "npx nyc report --reporter=html && start coverage/index.html",
     "test:coverage": "vitest run --coverage",
     "test:ci": "vitest",
+    "test:ui": "vitest --ui",
     "chromatic": "chromatic --project-token $CHROMATIC_PROJECT_TOKEN --exit-zero-on-changes --only-changed",
     "prepare": "husky",
     "lint": "eslint --fix .",
@@ -84,6 +86,7 @@
     "husky": ">=6",
     "istanbul": "^0.4.5",
     "jest-junit": "^16.0.0",
+    "jest-styled-components": "^7.2.0",
     "lint-staged": ">=10",
     "msw": "^2.2.2",
     "playwright": "^1.50.0",
@@ -94,9 +97,7 @@
     "vite-plugin-istanbul": "^4.0.0",
     "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^4.3.2",
-    "vitest": "^2.1.8",
-    "vitest-axe": "^0.1.0",
-    "vitest-canvas-mock": "^0.3.3",
+    "vitest": "^3.0.4",
     "wait-on": "^7.2.0"
   },
   "msw": {

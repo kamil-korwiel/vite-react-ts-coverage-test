@@ -7,7 +7,7 @@ import { lightTheme, darkTheme } from '../src/styles/theme.ts'
 import { describe, it, expect } from 'vitest'
 import { ThemeProvider } from 'styled-components'
 
-const mockTheme = {
+const mockTheme:any = {
     color: {
       badgeBackground: '#eee',
       badgeText: '#333',
@@ -62,7 +62,4 @@ describe('Badge Component', () => {
     expect(container.firstChild).toHaveClass('custom-class')
   })
 
- 
-
- 
 })
