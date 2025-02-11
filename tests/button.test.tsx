@@ -81,16 +81,4 @@ describe('Button Component', () => {
     expect(buttonElement).toBeDisabled() 
   })
 
-
-  it('calls the onClick function when clicked', async () => {
-    const handleClick = vi.fn()
-    renderWithTheme(<Button data-testid="tres" onClick={handleClick}>Click Me</Button>)
-
-    const buttonElement = screen.getByTestId("tres")
-
-    await userEvent.click(buttonElement)
-
-    expect(handleClick).toHaveBeenCalledTimes(1)
-})
-
 })

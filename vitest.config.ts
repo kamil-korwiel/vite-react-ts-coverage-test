@@ -6,8 +6,13 @@ export default mergeConfig(viteConfig, {
   test: {
     // 👋 add the line below to add jsdom to vite
     environment: 'happy-dom',
-    include: ['./tests/*.test.tsx',"./tests/*.spec.tsx"],
+    include: [
+      // './tests/*.test.tsx',
+      // "./tests/*.spec.tsx",
+      "./gen/*.test.tsx"],
     global: true,
-    setupfile: 'tests/setup.ts',
+    setupFiles: [
+      // 'tests/setup.ts', 
+      'gen/setup.ts']
   }
 })

@@ -1,4 +1,22 @@
 # Introduction 
+This project is taken form ...
+
+Testing Components:
+- How they render
+- How they respond to user action
+
+    - Slower
+    + more confidence
+    + more robust
+
+Test Must be:
+- maintainable
+- robust
+- trust worthy
+
+No test > Bad Tests
+
+Testing behavior not implementation
 
 
 # Use [Istanbul](https://istanbul.js.org) coverage collection with [Playwright Test](https://playwright.dev/docs/test-intro)

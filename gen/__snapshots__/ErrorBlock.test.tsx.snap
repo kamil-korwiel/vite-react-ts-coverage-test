@@ -1,0 +1,35 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ErrorBlock > matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-iGgWBj kPIcyQ"
+  >
+    <h2
+      class="sc-dcJsrY zBscq"
+    >
+      Error Title
+    </h2>
+    <div
+      class="sc-gsFSXq ldOqzt"
+    >
+      <img
+        alt="Error"
+        src="error.png"
+      />
+    </div>
+    <p
+      class="sc-fqkvVR etqVuC"
+      font-weight="regular"
+    >
+      This is an error message.
+    </p>
+    <button
+      class="sc-eqUAAy bwVxjB"
+      type="button"
+    >
+      Retry
+    </button>
+  </div>
+</DocumentFragment>
+`;

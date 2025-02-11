@@ -1,9 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom/vitest";
 import { Badge } from "../src/components/Badge";
 import { lightTheme, darkTheme } from '../src/styles/theme.ts'
-
 import { describe, it, expect } from 'vitest'
 import { ThemeProvider } from 'styled-components'
 
