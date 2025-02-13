@@ -9,10 +9,21 @@ export default mergeConfig(viteConfig, {
     include: [
       // './tests/*.test.tsx',
       // "./tests/*.spec.tsx",
-      "./gen/*.test.tsx"],
+      "./gen/*.test.tsx"
+    ],
     global: true,
     setupFiles: [
       // 'tests/setup.ts', 
-      'gen/setup.ts']
+      'gen/setup.ts'
+    ],
+
+    coverage: {
+        provider: 'istanbul', // or 'v8'
+        include: ["src/**/*.{ts,tsx}"],
+        exclude: [
+          "./src/**/*.stories.tsx",
+          "./src/components/**/index.ts",
+        ],
+    },
   }
 })
