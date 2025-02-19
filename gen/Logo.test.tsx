@@ -70,7 +70,7 @@ describe('Logo Component', () => {
     //     expect(paths[5]).toHaveAttribute('fill', colors.light[5])
     //     expect(paths[6]).toHaveAttribute('fill', colors.light[6])
     // })
-
+    // ! To napewno pójdzie do poprawy
     it('applies correct animation styles on hover', async () => {
      
       render(
