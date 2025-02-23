@@ -7,7 +7,7 @@ import { RestaurantCard } from '../src/components/RestaurantCard'
 import userEvent from '@testing-library/user-event'
 
 
-describe('Logo Component', () => {
+describe('RestaurantCard Component', () => {
 
     const t_photoUrl:string = 'http://www.example.it/photo'
     const t_name:string = 'Name'
@@ -125,6 +125,67 @@ describe('Logo Component', () => {
         expect(screen.queryByText(/new/i)).toBeInTheDocument()
 
     })
+
+    it('handles missing image URL gracefully', () => {
+        render(
+            <ThemeProvider theme={lightTheme}>
+                <RestaurantCard 
+                    photoUrl="" 
+                    name={t_name} 
+                    specialty={t_specialty} 
+                />
+            </ThemeProvider>
+        )
+
+        expect(screen.getByTestId("restaurant-card")).toBeInTheDocument()
+        expect(screen.getByRole("img")).toHaveAttribute('src', "")
+    })
+
+    // ? This is a Generated additional tests generate by CoPilot
+    // it('handles missing name gracefully', () => {
+    //     render(
+    //         <ThemeProvider theme={lightTheme}>
+    //             <RestaurantCard 
+    //                 photoUrl={t_photoUrl} 
+    //                 name="" 
+    //                 specialty={t_specialty} 
+    //             />
+    //         </ThemeProvider>
+    //     )
+
+    //     expect(screen.getByTestId("restaurant-card")).toBeInTheDocument()
+    //     expect(screen.queryByText(t_name)).not.toBeInTheDocument()
+    // })
+
+    // it('handles missing specialty gracefully', () => {
+    //     render(
+    //         <ThemeProvider theme={lightTheme}>
+    //             <RestaurantCard 
+    //                 photoUrl={t_photoUrl} 
+    //                 name={t_name} 
+    //                 specialty="" 
+    //             />
+    //         </ThemeProvider>
+    //     )
+
+    //     expect(screen.getByTestId("restaurant-card")).toBeInTheDocument()
+    //     expect(screen.queryByText(t_specialty)).not.toBeInTheDocument()
+    // })
+
+    // it('does not throw error when clicked without onClick handler', async () => {
+    //     render(
+    //         <ThemeProvider theme={lightTheme}>
+    //             <RestaurantCard 
+    //                 photoUrl={t_photoUrl} 
+    //                 name={t_name} 
+    //                 specialty={t_specialty} 
+    //             />
+    //         </ThemeProvider>
+    //     )
+
+    //     await userEvent.click(screen.getByTestId("restaurant-card"))
+    //     expect(screen.getByTestId("restaurant-card")).toBeInTheDocument()
+    // })
 
 
 })
