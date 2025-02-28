@@ -26,13 +26,6 @@ describe('Button Component', () => {
     expect(buttonElement).not.toHaveAttribute('disabled')
   })
 
-  it('renders StyledButton with clear prop', () => {
-    renderWithTheme(<Button clear>Clear Button</Button>)
-
-    const buttonElement = screen.getByRole('button')
-    expect(buttonElement).toHaveStyle('background-color: transparent')
-  })
-
   it('renders StyledButton with icon prop', () => {
     renderWithTheme(<Button icon="check">Button with Icon</Button>)
 

@@ -1,8 +1,8 @@
 import React from 'react'
-import { describe, it, expect, vi} from 'vitest'
+import { describe, it, expect} from 'vitest'
 import { ThemeProvider } from 'styled-components'
 import { lightTheme } from '../src/styles/theme.ts'
-import { render, screen } from '@testing-library/react'
+import { cleanup, render, screen } from '@testing-library/react'
 import { Logo, colors, shineColors } from '../src/components/Logo'
 import userEvent from '@testing-library/user-event'
 
@@ -21,17 +21,36 @@ describe('Logo Component', () => {
       expect(svgElement).toHaveStyle('height: 24px')
     })
   
-    
 
-    it('renders correctly with large prop', () => {
-        render(
-            <ThemeProvider theme={lightTheme}>
-              <Logo large={true} />
-            </ThemeProvider>
-          )
-          const svgElement = screen.getByTestId('icon-svg')
-          expect(svgElement).toHaveStyle('height: 150px')
-    })
+    it('simulates window resize for small screen', () => {
+      // Simulate small screen size
+      window.happyDOM.setInnerWidth(600);
+    
+      // Your test logic here
+      render(
+        <ThemeProvider theme={lightTheme}>
+          <Logo large={true} logoOnly={false} />
+        </ThemeProvider>
+      );
+    
+      const svgElement = screen.getByTestId('icon-svg');
+      expect(svgElement).toHaveStyle('height: 75px');
+    });
+    
+    it('simulates window resize for large screen', () => {
+      // Simulate large screen size
+      window.happyDOM.setInnerWidth(1024);
+    
+      // Your test logic here
+      render(
+        <ThemeProvider theme={lightTheme}>
+          <Logo large={true} logoOnly={false} />
+        </ThemeProvider>
+      );
+    
+      const svgElement = screen.getByTestId('icon-svg');
+      expect(svgElement).toHaveStyle('height: 150px');
+    });
   
     it('renders correctly with logoOnly prop', () => {
       render(
