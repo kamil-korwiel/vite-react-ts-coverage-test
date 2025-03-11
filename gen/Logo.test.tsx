@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components'
 import { lightTheme } from '../src/styles/theme.ts'
 import { cleanup, render, screen } from '@testing-library/react'
 import { Logo, colors, shineColors } from '../src/components/Logo'
-import userEvent from '@testing-library/user-event'
+
 
 
 describe('Logo Component', () => {
@@ -24,7 +24,12 @@ describe('Logo Component', () => {
 
     it('simulates window resize for small screen', () => {
       // Simulate small screen size
-      window.happyDOM.setInnerWidth(600);
+      
+      // window.happyDOM.setInnerWidth(600);
+      happyDOM.setViewport({
+        width: 600,
+        height: 1080,
+      })
     
       // Your test logic here
       render(
@@ -39,8 +44,11 @@ describe('Logo Component', () => {
     
     it('simulates window resize for large screen', () => {
       // Simulate large screen size
-      window.happyDOM.setInnerWidth(1024);
-    
+      happyDOM.setViewport({
+        width: 1024,
+        height: 1080,
+      })
+      
       // Your test logic here
       render(
         <ThemeProvider theme={lightTheme}>
