@@ -19,7 +19,7 @@ import userEvent from '@testing-library/user-event'
 //   describe('Modal Component - Debug Test', () => {
 //     beforeEach(() => {
 //       // Ensure modal portal container exists
-//       if (!document.getElementById('modal')) {
+//       if (!document.getElementById('modalooo')) {
 //         const modalRoot = document.createElement('div')
 //         modalRoot.setAttribute('id', 'modal')
 //         document.body.appendChild(modalRoot)
@@ -34,11 +34,11 @@ import userEvent from '@testing-library/user-event'
 //       )
   
 //       // Wait for the modal to be present in the DOM
-//       await waitFor(() => {
-//         const modal = screen.getByTestId('modal')
-//         console.log('Modal Rendered:', modal.outerHTML) // Debug statement
+//       await new Promise((resolve) => setTimeout(resolve, 1000))
+//         screen.debug()
+//         const modal = screen.getByText('Test Modal')
+        
 //         expect(modal).toBeInTheDocument()
-//       })
 //     })
 //   })
   

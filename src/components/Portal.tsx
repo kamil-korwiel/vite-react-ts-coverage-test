@@ -8,13 +8,18 @@ type Props = {
 
 export const Portal: React.FC<React.PropsWithChildren<Props>> = ({ children, selector }) => {
   const ref = useRef<Element>()
+  const [mounted, setMounted] = React.useState(false)
 
+  console.log(document.body.innerHTML)
   useEffect(() => {
     const element = document.querySelector<Element>(selector)
+
     if (element) {
       ref.current = element
+      setMounted(true)
     }
-  }, [selector])
 
-  return ref.current ? createPortal(children, ref.current) : null
+  }, [selector])
+  if (!mounted) return null
+  return ref.current ? createPortal(children, ref.current) : ref.current
 }
