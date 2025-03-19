@@ -6,39 +6,76 @@ import { render, screen, waitFor } from '@testing-library/react'
 import { Modal } from '../src/components/Modal'
 import userEvent from '@testing-library/user-event'
 
-// vi.mock('react-transition-group', async () => {
-//     const actual = await vi.importActual('react-transition-group')
-//     return {
-//       ...actual,
-//       CSSTransition: vi.fn(({ in: inProp, children, nodeRef }) => {
-//         return inProp ? <div ref={nodeRef}>{children}</div> : null
-//       }),
-//     }
-//   })
-  
-//   describe('Modal Component - Debug Test', () => {
-//     beforeEach(() => {
-//       // Ensure modal portal container exists
-//       if (!document.getElementById('modalooo')) {
-//         const modalRoot = document.createElement('div')
-//         modalRoot.setAttribute('id', 'modal')
-//         document.body.appendChild(modalRoot)
-//       }
-//     })
-  
-//     it('renders modal and logs the output', async () => {
-//       render(
-//         <ThemeProvider theme={lightTheme}>
-//           <Modal isOpen={true} onClose={vi.fn()}>Test Modal</Modal>
-//         </ThemeProvider>
-//       )
-  
-//       // Wait for the modal to be present in the DOM
-//       await new Promise((resolve) => setTimeout(resolve, 1000))
-//         screen.debug()
-//         const modal = screen.getByText('Test Modal')
-        
-//         expect(modal).toBeInTheDocument()
-//     })
-//   })
-  
+// Mock functions
+const onClose = vi.fn()
+
+describe('Modal Component', () => {
+  beforeEach(() => {
+    onClose.mockClear()
+    const modalRoot = document.createElement('div')
+    modalRoot.setAttribute('id', 'modal')
+    document.body.appendChild(modalRoot)
+  })
+
+  afterEach(() => {
+    const modalRoot = document.getElementById('modal')
+    if (modalRoot) {
+      document.body.removeChild(modalRoot)
+    }
+  })
+
+  it('should render the modal when isOpen is true', async () => {
+    render(
+      <ThemeProvider theme={lightTheme}>
+        <Modal isOpen={true} onClose={onClose}>
+          <div>Modal Content</div>
+        </Modal>
+      </ThemeProvider>
+    )
+
+    await waitFor(() => expect(screen.getByTestId('modal')).toBeInTheDocument())
+    expect(screen.getByText('Modal Content')).toBeInTheDocument()
+  })
+
+  it('should not render the modal when isOpen is false', async () => {
+    render(
+      <ThemeProvider theme={lightTheme}>
+        <Modal isOpen={false} onClose={onClose}>
+          <div>Modal Content</div>
+        </Modal>
+      </ThemeProvider>
+    )
+
+    await waitFor(() => expect(screen.queryByTestId('modal')).not.toBeInTheDocument())
+  })
+
+  it('should call onClose when close button is clicked', async () => {
+    render(
+      <ThemeProvider theme={lightTheme}>
+        <Modal isOpen={true} onClose={onClose}>
+          <div>Modal Content</div>
+        </Modal>
+      </ThemeProvider>
+    )
+
+    const closeButton = screen.getByTestId('modal-close-btn')
+    await userEvent.click(closeButton)
+
+    await waitFor(() => expect(onClose).toHaveBeenCalledTimes(1))
+  })
+
+  it('should call onClose when backdrop is clicked', async () => {
+    render(
+      <ThemeProvider theme={lightTheme}>
+        <Modal isOpen={true} onClose={onClose}>
+          <div>Modal Content</div>
+        </Modal>
+      </ThemeProvider>
+    )
+
+    const backdrop = screen.getByTestId('modal-backdrop')
+    await userEvent.click(backdrop)
+
+    await waitFor(() => expect(onClose).toHaveBeenCalledTimes(1))
+  })
+})
